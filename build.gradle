@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.service'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    karateVersion = '1.5.2'
+}
+
+dependencies {
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    testImplementation "io.karatelabs:karate-junit5:${karateVersion}"
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "karate.options", System.getProperty("karate.options")
+    systemProperty "karate.env", System.getProperty("karate.env")
+}
+
+tasks.register('testDev', Test) {
+    useJUnitPlatform()
+    systemProperty "karate.env", "dev"
+}
+
+tasks.register('testQa', Test) {
+    useJUnitPlatform()
+    systemProperty "karate.env", "qa"
+}
+
