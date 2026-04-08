@@ -1,59 +1,26 @@
 function fn() {
-
-    //  ENV
-    var env = karate.env || 'dev';
-
-    //  SERVICES
+    var env = karate.env || 'qa';
+    karate.log('ENV:', env);
+    karate.configure('ssl',true)
+    karate.configure('logPrettyRequest',true)
+    karate.configure('logPrettyResponse',true)
+    karate.configure('afterScenario', function() {
+        try {
+            if (karate.get('request')) {
+                karate.embed(karate.get('request'), 'application/json');
+            }
+        } catch(e) {}
+        try {
+            if (karate.get('response')) {
+                karate.embed(karate.get('response'), 'application/json');
+            }
+        } catch(e) {}
+    });
+    var envConfig = read('classpath:config/env/' + env + '.js')();
     var config = {
         env: env,
-        services: {
-            cuentas: 'https://dev.api.cuentas.com',
-            pagos: 'https://dev.api.pagos.com',
-            auth: 'https://dev.api.auth.com',
-            demo: 'https://jsonplaceholder.typicode.com'
-        }
+        urls: envConfig.urls
     };
-
-    //  CAMBIO POR AMBIENTE
-    if (env == 'qa') {
-        config.services = {
-            cuentas: 'https://qa.api.cuentas.com',
-            pagos: 'https://qa.api.pagos.com',
-            auth: 'https://qa.api.auth.com',
-            demo: 'https://jsonplaceholder.typicode.com'
-        };
-    }
-
-    // 🔐 AUTH (feature desacoplado)
-    var auth = karate.call('classpath:features/common/auth.feature');
-
-    //  FUNCTION: headers dinámicos por servicio
-    function buildHeaders(service) {
-
-        var base = {
-            'Content-Type': 'application/json'
-        };
-
-        if (service == 'cuentas') {
-            base.canal = 'web';
-        }
-
-        if (service == 'pagos') {
-            base.canal = 'mobile';
-        }
-
-        if (service == 'auth') {
-            base.canal = 'internal';
-        }
-
-        // 🔐 token dinámico
-        base.Authorization = 'Bearer ' + auth.token;
-
-        return base;
-    }
-
-    // 📦 Exponer función a Karate
-    config.buildHeaders = buildHeaders;
-
+    karate.log('URLS:', config.urls);
     return config;
 }

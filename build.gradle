@@ -24,7 +24,8 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
+    implementation 'com.aventstack:extentreports:5.0.9'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
     testImplementation "io.karatelabs:karate-junit5:${karateVersion}"
 }
 
@@ -34,13 +35,18 @@ test {
     systemProperty "karate.env", System.getProperty("karate.env")
 }
 
-tasks.register('testDev', Test) {
+tasks.register('karateTest', Test) {
+
     useJUnitPlatform()
-    systemProperty "karate.env", "dev"
+    def env = System.getProperty("env", "qa")
+    def tags = System.getProperty("tags", "")
+    systemProperty "karate.env", env
+    if (tags) {
+        systemProperty "karate.options", "--tags " + tags
+    }
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
 }
 
-tasks.register('testQa', Test) {
-    useJUnitPlatform()
-    systemProperty "karate.env", "qa"
-}
+
 
