@@ -4,10 +4,10 @@ Feature: API Encriptacion de clave
     * header accept = content
     * header Content-Type = content
     * def fixedClave = '5678'
-    * def clave = karate.get('nvaClave', fixedClave)
 
   @claveEncriptada @claveAES @claveRSA
   Scenario: Encriptar Clave
+    * def clave = clave ? clave : fixedClave
     Given url urls.pathAes
     And path 'ocp', 'cnl-trvl', 'autenticacion', 'clave-acceso', 'v1', 'encriptaClave'
     And request
