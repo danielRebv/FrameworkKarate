@@ -3,8 +3,8 @@ Feature: API Encriptacion de clave
     * def content = 'application/json'
     * header accept = content
     * header Content-Type = content
-    * def clave = karate.get('nvaClave')
     * def fixedClave = '5678'
+    * def clave = karate.get('nvaClave', fixedClave)
 
   @claveEncriptada @claveAES @claveRSA
   Scenario: Encriptar Clave
@@ -13,7 +13,7 @@ Feature: API Encriptacion de clave
     And request
     """
        {
-          "claveEnClaro": '#(clave)'
+          "clave": '#(clave)'
        }
     """
     When method POST

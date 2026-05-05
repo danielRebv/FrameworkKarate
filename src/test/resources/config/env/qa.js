@@ -9,7 +9,7 @@ function fn() {
             gw_edge_micro: "https://gwqa.bice.cl",
             pathBaseAPIGeeDMZ: "https://apiqa.bice.cl",
             pathAes: 'https://api-cambio-clave-1-cnl-trvl.apps.ocp-dev.bice.local'
-        }
+        },
         basicAuth:
                 {
                     AppPersonas: "Basic a01sdTlvcFY2bGhyQWlPV01SRTA1enR1cWsyU0pBM0E6NnVCZkpHckpFZlBDQVlicA==",
@@ -21,7 +21,7 @@ function fn() {
                     BtnPagoSii: "Basic VXZIQW40MzNBRzlBRXdmNlNXWXE0NTRDeGtUWE5HSFA6eWdyc2dRN0xXN2JHa2pIRg==",
                     factoring: "Basic cWl0NndrMmJ6QW9QZ3hqem1kU0c5c0lQUDlHekhGdHM6Mk1UdTM2Z3dZUVNhU2tjYQ==",
                     PortalEmpresaPagos: "Basic QUxEbnFEMm4zbzVKNGpGZ3VWNGZOazRWbWowdUFyZEg6ZHpUOFJJaWFYUE1GU2VlRw==",
-                    MobileOauth: "Basic a01sdTlvcFY2bGhyQWlPV01SRTA1enR1cWsyU0pBM0E6NnVCZkpHckpFZlBDQVlicA=="
+                    MobileOauth: "Basic a01sdTlvcFY2bGhyQWlPV01SRTA1enR1cWsyU0pBM0E6NnVCZkpHckpFZlBDQVlicA==",
                     cnlTrl: "Basic UXRIa3NzUXlFdElMMkJENm9oNzdDSHBmcUFZS1VVRzM6YUREOFpHdmFZV2I0ajFNVA=="
                 }
     };
