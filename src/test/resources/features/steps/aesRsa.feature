@@ -10,7 +10,6 @@ Feature: API Encriptacion de clave
   Scenario: Encriptar Clave
     Given url urls.pathAes
     And path 'ocp', 'cnl-trvl', 'autenticacion', 'clave-acceso', 'v1', 'encriptaClave'
-    * set body.clave = clave ? clave : fixedClave
     And request
     """
        {
