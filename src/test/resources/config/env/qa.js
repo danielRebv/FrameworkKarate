@@ -7,7 +7,8 @@ function fn() {
             APIqa: 'https://apiqa.bice.local',
             EncriptadOCP: 'https://api-autenticacion-usuarios-1-cnl-trvl.apps.ocp-qa.bice.local',
             gw_edge_micro: "https://gwqa.bice.cl",
-            pathBaseAPIGeeDMZ: "https://apiqa.bice.cl"
+            pathBaseAPIGeeDMZ: "https://apiqa.bice.cl",
+            pathAes: 'https://api-cambio-clave-1-cnl-trvl.apps.ocp-dev.bice.local'
         }
         basicAuth:
                 {

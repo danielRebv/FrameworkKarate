@@ -1,6 +1,5 @@
 Feature: API Encriptacion de clave
   Background:
-    * url pathAes
     * def content = 'application/json'
     * header accept = content
     * header Content-Type = content
@@ -10,7 +9,8 @@ Feature: API Encriptacion de clave
 
   @claveEncriptada @claveAES @claveRSA
   Scenario: Encriptar Clave
-    Given path '/ocp/cnl-trvl/autenticacion/clave-acceso/v1/encriptaClave'
+    Given url urls.pathAes
+    And path 'ocp', 'cnl-trvl', 'autenticacion', 'clave-acceso', 'v1', 'encriptaClave'
     * set body.clave = clave ? clave : fixedClave
     And request body
     When method POST
