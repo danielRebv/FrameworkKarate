@@ -21,7 +21,6 @@ function fn() {
         env: env,
         urls: envConfig.urls
     };
-    karate.log('Se amable, es mi primera vez')
     karate.log('URLS:', config.urls);
     return config;
 }
